@@ -1,0 +1,8 @@
+<?php
+	require_once'connect.php';
+	echo ' ';
+	echo md5('pass123');
+	
+	
+
+?>
