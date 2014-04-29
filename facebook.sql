@@ -1,14 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.8.1deb1
+-- version 4.0.6deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 28, 2014 at 06:46 PM
--- Server version: 5.5.34-0ubuntu0.13.04.1
--- PHP Version: 5.4.9-4ubuntu2.4
+-- Generation Time: Apr 29, 2014 at 04:46 AM
+-- Server version: 5.5.37-0ubuntu0.13.10.1
+-- PHP Version: 5.5.3-1ubuntu2.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+05:30";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -33,6 +33,19 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`postid`),
   UNIQUE KEY `uid` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `edgelist`
+--
+
+CREATE TABLE IF NOT EXISTS `edgelist` (
+  `uid1` int(11) NOT NULL,
+  `uid2` int(11) NOT NULL,
+  `aff12` float DEFAULT NULL,
+  `aff21` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
