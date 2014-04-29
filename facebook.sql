@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2014 at 04:46 AM
+-- Generation Time: Apr 29, 2014 at 06:38 AM
 -- Server version: 5.5.37-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2.3
 
@@ -19,6 +19,17 @@ SET time_zone = "+05:30";
 --
 -- Database: `facebook`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `buffer`
+--
+
+CREATE TABLE IF NOT EXISTS `buffer` (
+  `from` int(11) NOT NULL,
+  `to` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='many to many buffer for friend req.';
 
 -- --------------------------------------------------------
 
@@ -78,6 +89,20 @@ CREATE TABLE IF NOT EXISTS `message` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `id` int(11) NOT NULL,
+  `content` text NOT NULL COMMENT 'json',
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `readstatus` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `post`
 --
 
@@ -103,6 +128,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(1000) NOT NULL,
   `dob` date DEFAULT NULL,
   `dp` text,
+  `verified` tinyint(1) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
