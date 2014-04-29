@@ -1,14 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.6deb1
+-- version 3.5.8.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2014 at 06:38 AM
--- Server version: 5.5.37-0ubuntu0.13.10.1
--- PHP Version: 5.5.3-1ubuntu2.3
+-- Generation Time: Apr 29, 2014 at 08:07 PM
+-- Server version: 5.5.34-0ubuntu0.13.04.1
+-- PHP Version: 5.4.9-4ubuntu2.4
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+05:30";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -46,6 +46,13 @@ CREATE TABLE IF NOT EXISTS `comments` (
   UNIQUE KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`uid`, `postid`, `content`, `time`) VALUES
+(0, 0, '.....', '2014-04-29 09:30:47');
+
 -- --------------------------------------------------------
 
 --
@@ -66,12 +73,29 @@ CREATE TABLE IF NOT EXISTS `edgelist` (
 --
 
 CREATE TABLE IF NOT EXISTS `likes` (
-  `uid` int(11) NOT NULL,
-  `postid` int(11) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`postid`),
-  UNIQUE KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item-id` int(11) NOT NULL,
+  `likes` int(11) NOT NULL,
+  `dislikes` int(11) NOT NULL,
+  `ip` mediumtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `likes`
+--
+
+INSERT INTO `likes` (`id`, `item-id`, `likes`, `dislikes`, `ip`) VALUES
+(3, 34, 1, 0, '123.123.1.323'),
+(4, 0, 1, 0, '123.123.1.323'),
+(5, 0, 1, 0, '123.123.1.323'),
+(6, 0, 1, 0, '123.123.1.323'),
+(7, 0, 1, 0, '123.123.1.323'),
+(8, 0, 1, 0, '123.123.1.323'),
+(9, 0, 1, 0, '123.123.1.323'),
+(10, 35, 1, 0, '123.123.1.323'),
+(11, 36, 1, 0, '123.123.1.323'),
+(12, 37, 1, 0, '123.123.1.323');
 
 -- --------------------------------------------------------
 
@@ -117,6 +141,41 @@ CREATE TABLE IF NOT EXISTS `post` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `status`
+--
+
+CREATE TABLE IF NOT EXISTS `status` (
+  `status_id` int(11) NOT NULL AUTO_INCREMENT,
+  `status_text` varchar(140) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_on` int(11) NOT NULL,
+  PRIMARY KEY (`status_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tz_todo`
+--
+
+CREATE TABLE IF NOT EXISTS `tz_todo` (
+  `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
+  `text` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `dt_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `position` int(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=33 ;
+
+--
+-- Dumping data for table `tz_todo`
+--
+
+INSERT INTO `tz_todo` (`id`, `text`, `dt_added`, `position`) VALUES
+(32, '.....', '2014-04-29 11:35:39', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -128,7 +187,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(1000) NOT NULL,
   `dob` date DEFAULT NULL,
   `dp` text,
-  `verified` tinyint(1) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
