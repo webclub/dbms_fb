@@ -135,7 +135,7 @@ $(document).ready(function(){
 		// Only one todo per 5 seconds is allowed:
 		if((new Date()).getTime() - timestamp<5000) return false;
 		
-		$.get("demo/ajax.php",{'action':'new','text':'.....','rand':Math.random()},function(msg){
+		$.get("demo/ajax.php",{'action':'new','text':'.....','uid':$.cookie("uid"),'postid':4},function(msg){
 
 			// Appending the new todo and fading it into view:
 			$(msg).hide().appendTo('.todoList').fadeIn();

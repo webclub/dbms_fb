@@ -24,9 +24,9 @@ class ToDo{
 		// The string we return is outputted by the echo statement
 		
 		return '
-			<li id="todo-'.$this->data['id'].'" class="todo">
+			<li id="todo-'.$this->data['commid'].'" class="todo">
 			
-				<div class="text">'.$this->data['text'].'</div>
+				<div class="text">'.$this->data['content'].'</div>
 				
 				<div class="actions">
 					<a href="#" class="edit">Edit</a>
@@ -54,7 +54,7 @@ class ToDo{
 		$text = self::esc($text);
 		if(!$text) throw new Exception("Wrong update text!");
 		
-		mysql_query("	UPDATE tz_todo
+		mysql_query("	UPDATE comments
 						SET text='".$text."'
 						WHERE id=".$id
 					);
@@ -70,7 +70,7 @@ class ToDo{
 	
 	public static function delete($id){
 		
-		mysql_query("DELETE FROM tz_todo WHERE id=".$id);
+		mysql_query("DELETE FROM comments WHERE id=".$id);
 		
 		if(mysql_affected_rows($GLOBALS['link'])!=1)
 			throw new Exception("Couldn't delete item!");
@@ -82,46 +82,12 @@ class ToDo{
 		contains the ids of the todos in the new order.
 	*/
 	
-	public static function rearrange($key_value){
-		
-		$updateVals = array();
-		foreach($key_value as $k=>$v)
-		{
-			$strVals[] = 'WHEN '.(int)$v.' THEN '.((int)$k+1).PHP_EOL;
-		}
-		
-		if(!$strVals) throw new Exception("No data!");
-		
-		// We are using the CASE SQL operator to update the ToDo positions en masse:
-		
-		mysql_query("	UPDATE tz_todo SET position = CASE id
-						".join($strVals)."
-						ELSE position
-						END");
-		
-		if(mysql_error($GLOBALS['link']))
-			throw new Exception("Error updating positions!");
-	}
-	
-	/*
-		The createNew method takes only the text of the todo,
-		writes to the databse and outputs the new todo back to
-		the AJAX front-end.
-	*/
-	
-	public static function createNew($text){
+	public static function createNew($uid,$text,$postid){
 		
 		$text = self::esc($text);
 		if(!$text) throw new Exception("Wrong input data!");
-		
-		$posResult = mysql_query("SELECT MAX(position)+1 FROM tz_todo");
-		
-		if(mysql_num_rows($posResult))
-			list($position) = mysql_fetch_array($posResult);
-
-		if(!$position) $position = 1;
-
-		mysql_query("INSERT INTO tz_todo SET text='".$text."', position = ".$position);
+		$ins="INSERT INTO comments VALUES(NULL,".$uid.",".$postid.",".$text.",NULL)";
+		mysql_query($ins);
 
 		if(mysql_affected_rows($GLOBALS['link'])!=1)
 			throw new Exception("Error inserting TODO!");

@@ -2,18 +2,7 @@
 
 require "demo/connect.php";
 require "demo/todo.class.php";
-
-
-// Select all the todos, ordered by position:
-$query = mysql_query("SELECT * FROM `tz_todo` ORDER BY `position` ASC");
-
-$todos = array();
-
-// Filling the $todos array with new ToDo objects:
-
-while($row = mysql_fetch_assoc($query)){
-	$todos[] = new ToDo($row);
-}
+setcookie("uid","2"); // to be removed
 
 ?>
 
@@ -149,7 +138,7 @@ while($row = mysql_fetch_assoc($query)){
 	<body>
 		<div class="container">
 			<header class="clearfix">
-				<span>Shubham Desale</span>
+				<span>Dhruv Agarwal</span>
 				<h1>News Feed</h1>
 				<nav>
 					<a href="http://tympanus.net/Blueprints/ScrollingLayout/" class="icon-arrow-left" data-info="Logout">Logout</a>
@@ -158,152 +147,65 @@ while($row = mysql_fetch_assoc($query)){
 			</header>	
 			<div class="main">
 				<ul class="cbp_tmtimeline">
-					<li>
-						<time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>4/10/13</span> <span>18:30</span></time>
-						<div class="cbp_tmicon cbp_tmicon-phone"></div>
-						<div class="cbp_tmlabel">
-							<h2>Ricebean black-eyed pea</h2>
-							<p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong. Plantain salad beetroot bunya nuts black-eyed pea collard greens radish water spinach gourd chicory prairie turnip avocado sierra leone bologi.</p>
-						</div>
-						<div class="contain">
-		<button id="button-container-like" class="option" value="1" pid='34'><span class="thumbs-up"></span>Like</button>
-		<button id="button-container-unlike" class="option" value="0" pid='34'><span class="thumbs-down"></span></button>
-		<div class="stats_34"></div>
-		<input type="hidden" id="item_34" value="34">
-	</div> 
-						<div id="main">
+				<?php
+					$uid=$_COOKIE["uid"];
+					$query="SELECT * FROM post WHERE uid IN (SELECT uid1 FROM edgelist WHERE uid2=$uid UNION SELECT uid2 FROM edgelist WHERE uid1=$uid) ORDER BY time DESC";
+					$posts=mysql_query($query);
+					while($post=mysql_fetch_array($posts))			{						
+						echo '<li>
+											<time class="cbp_tmtime" datetime="'.$post['time'].'"><span>4/10/13</span> <span>18:30</span></time>
+											<div class="cbp_tmicon cbp_tmicon-phone"></div>
+											<div class="cbp_tmlabel">
+												'.$post['content'].'
+											</div>
+											<div class="contain">
+							<button id="button-container-like" class="option" value="1" pid='.$post['postid'].'><span class="thumbs-up"></span>Like</button>
+							<button id="button-container-unlike" class="option" value="0" pid='.$post['postid'].'><span class="thumbs-down"></span></button>
+							<div class="stats_'.$post['postid'].'"></div>
+							<input type="hidden" id="item_'.$post['postid'].'" value="'.$post['postid'].'">
+						</div> 
+											<div id="main">
 
-	<ul class="todoList">
-		
-        <?php
-		
-		// Looping and outputting the $todos array. The __toString() method
-		// is used internally to convert the objects to strings:
-		
-		foreach($todos as $item){
-			echo $item;
-		}
-		
-		?>
+						<ul class="todoList">';
+							
+					
+							
+							// Looping and outputting the $todos array. The __toString() method
+							// is used internally to convert the objects to strings:
+						$query="SELECT * FROM comments WHERE postid=".$post['postid']." ORDER BY time ASC";
+						$comments=mysql_query($query);
+						$todos = array();
 
-    </ul>
+// Filling the $todos array with new ToDo objects:
 
-<a id="addButton" class="green-button" href="#">Comment</a>
+						while($row = mysql_fetch_assoc($comments)){
+							$todos[] = new ToDo($row);
+						}
 
-</div>
+							foreach($todos as $item){
+								echo $item;
+							}
+							
+						echo '
+					    </ul>
 
-					</li>
-					<li>
-						<time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>4/10/13</span> <span>18:30</span></time>
-						<div class="cbp_tmicon cbp_tmicon-phone"></div>
-						<div class="cbp_tmlabel">
-							<h2>Ricebean black-eyed pea</h2>
-							<p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong. Plantain salad beetroot bunya nuts black-eyed pea collard greens radish water spinach gourd chicory prairie turnip avocado sierra leone bologi.</p>
-						</div>
-						<div class="contain">
-		<button id="button-container-like" class="option" value="1" pid='35'><span class="thumbs-up"></span>Like</button>
-		<button id="button-container-unlike" class="option" value="0" pid='35'><span class="thumbs-down"></span></button>
-		<div class="stats_35"></div>
-		<input type="hidden" id="item_35" value="35">
-	</div> 
-						<div id="main">
+					<a id="addButton" class="green-button" href="#">Comment</a>
 
-	<ul class="todoList">
-		
-        <?php
-		
-		// Looping and outputting the $todos array. The __toString() method
-		// is used internally to convert the objects to strings:
-		
-		foreach($todos as $item){
-			echo $item;
-		}
-		
-		?>
+					</div>
 
-    </ul>
+										</li>';
+					}
 
-<a id="addButton" class="green-button" href="#">Comment</a>
-
-</div>
-
-					</li>
-					<li>
-						<time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>4/10/13</span> <span>18:30</span></time>
-						<div class="cbp_tmicon cbp_tmicon-phone"></div>
-						<div class="cbp_tmlabel">
-							<h2>Ricebean black-eyed pea</h2>
-							<p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong. Plantain salad beetroot bunya nuts black-eyed pea collard greens radish water spinach gourd chicory prairie turnip avocado sierra leone bologi.</p>
-						</div>
-						<div class="contain">
-		<button id="button-container-like" class="option" value="1" pid='36'><span class="thumbs-up"></span>Like</button>
-		<button id="button-container-unlike" class="option" value="0" pid='36'><span class="thumbs-down"></span></button>
-		<div class="stats_36"></div>
-		<input type="hidden" id="item_36" value="36">
-	</div> 
-						<div id="main">
-
-	<ul class="todoList">
-		
-        <?php
-		
-		// Looping and outputting the $todos array. The __toString() method
-		// is used internally to convert the objects to strings:
-		
-		foreach($todos as $item){
-			echo $item;
-		}
-		
-		?>
-
-    </ul>
-
-<a id="addButton" class="green-button" href="#">Comment</a>
-
-</div>
-
-					</li>
-					<li>
-						<time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>4/10/13</span> <span>18:30</span></time>
-						<div class="cbp_tmicon cbp_tmicon-phone"></div>
-						<div class="cbp_tmlabel">
-							<h2>Ricebean black-eyed pea</h2>
-							<p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong. Plantain salad beetroot bunya nuts black-eyed pea collard greens radish water spinach gourd chicory prairie turnip avocado sierra leone bologi.</p>
-						</div>
-						<div class="contain">
-		<button id="button-container-like" class="option" value="1" pid='37'><span class="thumbs-up"></span>Like</button>
-		<button id="button-container-unlike" class="option" value="0" pid='37'><span class="thumbs-down"></span></button>
-		<div class="stats_37"></div>
-		<input type="hidden" id="item_37" value="37">
-	</div> 
-						<div id="main">
-
-	<ul class="todoList">
-		
-        <?php
-		
-		// Looping and outputting the $todos array. The __toString() method
-		// is used internally to convert the objects to strings:
-		
-		foreach($todos as $item){
-			echo $item;
-		}
-		
-		?>
-
-    </ul>
-
-<a id="addButton" class="green-button" href="#">Comment</a>
-
-</div>
-
-					</li>
+				?>
+					
+					
 				</ul>
 			</div>
 		</div>
 		<div id="dialog-confirm" title="Delete TODO Item?">Are you sure you want to delete this TODO item?</div>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<script type="text/javascript" src="demo/jquery.cookie.js"></script>
 <script type="text/javascript" src="demo/script.js"></script>
 <script language="javascript">
 <!--
@@ -326,7 +228,7 @@ while($row = mysql_fetch_assoc($query)){
 	);
 
 	$(".close").live("click",function(){
-		$(".stats").slideUp("fast");
+		$(this).parent().parent().slideUp("fast");
 	});
 
 	$(".option").click(function(){
@@ -359,5 +261,6 @@ while($row = mysql_fetch_assoc($query)){
 	});
 //-->
 </script>
+
 	</body>
 </html>

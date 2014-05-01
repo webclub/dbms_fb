@@ -5,6 +5,8 @@ require "todo.class.php";
 
 
 $id = (int)$_GET['id'];
+$uid=$_GET['uid'];
+$postid=$_GET['postid'];
 
 try{
 
@@ -23,7 +25,7 @@ try{
 			break;
 			
 		case 'new':
-			ToDo::createNew($_GET['text']);
+			ToDo::createNew($uid,$_GET['text'],$postid);
 			break;
 	}
 
