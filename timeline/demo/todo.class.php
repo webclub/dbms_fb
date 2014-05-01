@@ -1,7 +1,7 @@
 <?php
 
 /* Defining the ToDo class */
-
+require 'connect.php';
 class ToDo{
 	
 	/* An array that stores the todo item data: */
@@ -22,11 +22,11 @@ class ToDo{
 	public function __toString(){
 		
 		// The string we return is outputted by the echo statement
-		
+		$uid=mysql_fetch_array(mysql_query("SELECT name FROM user WHERE uid=".$this->data['uid']));
 		return '
 			<li id="todo-'.$this->data['commid'].'" class="todo">
 			
-				<div class="text">'.$this->data['content'].'</div>
+				<div class="text">'.$uid[0].':<b>'.$this->data['content'].'</b></div>
 				
 				<div class="actions">
 					<a href="#" class="edit">Edit</a>
