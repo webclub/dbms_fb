@@ -16,10 +16,6 @@ try{
 			ToDo::delete($id);
 			break;
 			
-		case 'rearrange':
-			ToDo::rearrange($_GET['positions']);
-			break;
-			
 		case 'edit':
 			ToDo::edit($id,$_GET['text']);
 			break;
@@ -32,8 +28,9 @@ try{
 }
 catch(Exception $e){
 //	echo $e->getMessage();
-	die("0");
+	//die("0");
+	echo "1";
 }
 
-echo "1";
+
 ?>

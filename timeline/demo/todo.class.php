@@ -54,10 +54,9 @@ class ToDo{
 		$text = self::esc($text);
 		if(!$text) throw new Exception("Wrong update text!");
 		
-		mysql_query("	UPDATE comments
-						SET text='".$text."'
-						WHERE id=".$id
-					);
+		mysql_query("UPDATE comments
+						SET content='$text'
+						WHERE commid='$id'");
 		
 		if(mysql_affected_rows($GLOBALS['link'])!=1)
 			throw new Exception("Couldn't update item!");
@@ -70,7 +69,7 @@ class ToDo{
 	
 	public static function delete($id){
 		
-		mysql_query("DELETE FROM comments WHERE id=".$id);
+		mysql_query("DELETE FROM comments WHERE commid='$id'") or die("bhot ho gaya".$id);
 		
 		if(mysql_affected_rows($GLOBALS['link'])!=1)
 			throw new Exception("Couldn't delete item!");
@@ -86,7 +85,7 @@ class ToDo{
 		
 		$text = self::esc($text);
 		if(!$text) throw new Exception("Wrong input data!");
-		$ins="INSERT INTO comments VALUES(NULL,".$uid.",".$postid.",".$text.",NULL)";
+		$ins="INSERT INTO comments VALUES(NULL,'$uid','$postid','$text',NULL)";
 		mysql_query($ins);
 
 		if(mysql_affected_rows($GLOBALS['link'])!=1)
@@ -95,8 +94,8 @@ class ToDo{
 		// Creating a new ToDo and outputting it directly:
 		
 		echo (new ToDo(array(
-			'id'	=> mysql_insert_id($GLOBALS['link']),
-			'text'	=> $text
+			'commid'	=> mysql_insert_id($GLOBALS['link']),
+			'content'	=> $text
 		)));
 		
 		exit;

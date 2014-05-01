@@ -1,7 +1,7 @@
 <?php
   $host = "localhost";
   $db_uname = "root";
-  $db_pass = "dhruv";
+  $db_pass = "shubham";
   $database = "facebook";
   $dbtable = "likes";
   
