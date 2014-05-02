@@ -22,9 +22,9 @@ class ToDo{
 	public function __toString(){
 		
 		// The string we return is outputted by the echo statement
-		$uid=mysql_fetch_array(mysql_query("SELECT firstname FROM user WHERE uid=".$this->data['uid']));
+		$uid=mysql_fetch_array(mysql_query("SELECT name FROM user WHERE uid=".$this->data['uid']));
 		return '
-			<li id="todo-'.$this->data['commid'].'" class="todo">
+			<li id="todo-'.$this->data['commid'].'" class="todo '.$this->data['postid'].'">
 			
 				<div class="text">'.$uid[0].':<b>'.$this->data['content'].'</b></div>
 				

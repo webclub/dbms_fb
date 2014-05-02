@@ -155,7 +155,7 @@ setcookie("uid","2"); // to be removed
 						echo '<li>
 											<time class="cbp_tmtime" datetime="'.$post['time'].'"><span>4/10/13</span> <span>18:30</span></time>
 											<div class="cbp_tmicon cbp_tmicon-phone"></div>
-											<div class="cbp_tmlabel">
+											<div class="cbp_tmlabel" id="'.$post['postid'].'">
 												'.$post['content'].'
 											</div>
 											<div class="contain">
@@ -166,7 +166,7 @@ setcookie("uid","2"); // to be removed
 						</div> 
 											<div id="main">
 
-						<ul class="todoList">';
+						<ul class="todoList" >';
 							
 					
 							
@@ -189,7 +189,7 @@ setcookie("uid","2"); // to be removed
 						echo '
 					    </ul>
 
-					<a  class="green-button addButton" href="#">Comment</a>
+					<a  class="green-button addButton" id="'.$post['postid'].'" href="#">Comment</a>
 
 					</div>
 
