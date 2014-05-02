@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 01, 2014 at 08:14 PM
+-- Generation Time: May 02, 2014 at 11:12 AM
 -- Server version: 5.5.37-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `content` text NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`commid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `comments`
@@ -62,7 +62,6 @@ INSERT INTO `comments` (`commid`, `uid`, `postid`, `content`, `time`) VALUES
 (9, 10, 7, 'this is comment 8', '2014-04-29 19:02:01'),
 (10, 4, 3, 'this is comment 9', '2014-04-29 19:02:01'),
 (11, 6, 5, 'this is comment 10', '2014-04-29 19:02:01'),
-(12, 8, 3, 'this is comment 11', '2014-04-29 19:02:01'),
 (13, 2, 9, 'this is comment 12', '2014-04-29 19:02:01'),
 (14, 2, 5, 'this is comment 13', '2014-04-29 19:02:02'),
 (15, 2, 7, 'this is comment 14', '2014-04-29 19:02:02'),
@@ -70,7 +69,12 @@ INSERT INTO `comments` (`commid`, `uid`, `postid`, `content`, `time`) VALUES
 (17, 10, 10, 'this is comment 16', '2014-04-29 19:02:02'),
 (18, 8, 9, 'this is comment 17', '2014-04-29 19:02:02'),
 (19, 4, 9, 'this is comment 18', '2014-04-29 19:02:02'),
-(20, 7, 1, 'this is comment 19', '2014-04-29 19:02:02');
+(20, 7, 1, 'this is comment 19', '2014-04-29 19:02:02'),
+(21, 2, 4, 'this is sparta', '2014-05-01 18:34:30'),
+(22, 2, 4, 'jo bhi main ... kehna chahu ''''', '2014-05-01 18:35:02'),
+(23, 2, 4, ' fails ', '2014-05-01 18:35:53'),
+(24, 2, 4, 'idk', '2014-05-01 20:36:23'),
+(25, 2, 4, '.....', '2014-05-01 20:36:46');
 
 -- --------------------------------------------------------
 
@@ -225,7 +229,8 @@ INSERT INTO `tz_todo` (`id`, `text`, `dt_added`, `position`) VALUES
 CREATE TABLE IF NOT EXISTS `user` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
+  `firstname` varchar(40) NOT NULL,
+  `lastname` varchar(40) DEFAULT NULL,
   `about` text,
   `password` varchar(1000) NOT NULL,
   `dob` date DEFAULT NULL,
@@ -239,17 +244,17 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`uid`, `email`, `name`, `about`, `password`, `dob`, `dp`, `verified`) VALUES
-(1, 'dhruvagga@gmail.com', 'Dhruv Agarwal', NULL, '12345678', NULL, NULL, 1),
-(2, 'shubham.desale@gmail.com', 'Shubham Desale', 'JS and Android Champ from DTU 8)', '12345678', NULL, NULL, 1),
-(3, 'architv07@gmail.com', 'Archit Verma', NULL, '12345678', NULL, NULL, 1),
-(4, 'dewansh.parashar@gmail.com', 'Dewansh Parashar', NULL, '12345678', NULL, NULL, 1),
-(5, 'prateeknarang111@gmail.com', 'Prateek Narang', NULL, '12345678', NULL, NULL, 1),
-(6, 'falit94@gmail.com', 'Falit Jain', NULL, '12345678', NULL, NULL, 1),
-(7, 'mebjas@gmail.com', 'Minhaz AV', 'Gsocer', '12345678', NULL, NULL, 1),
-(8, 'bhavukarora@gmail.com', 'Bhavuk Arora', NULL, '12345678', NULL, NULL, 1),
-(9, 'ayushtomar@gmail.com', 'Ayush Tomar', 'AUV guy', '12345678', NULL, NULL, 0),
-(10, 'deep.deepankar@gmail.com', 'Deepankar Anil Kumar', 'coder', '12345678', NULL, NULL, 0);
+INSERT INTO `user` (`uid`, `email`, `firstname`, `lastname`, `about`, `password`, `dob`, `dp`, `verified`) VALUES
+(1, 'dhruvagga@gmail.com', 'Dhruv Agarwal', NULL, NULL, '12345678', NULL, NULL, 1),
+(2, 'shubham.desale@gmail.com', 'Shubham Desale', NULL, 'JS and Android Champ from DTU 8)', '12345678', NULL, NULL, 1),
+(3, 'architv07@gmail.com', 'Archit Verma', NULL, NULL, '12345678', NULL, NULL, 1),
+(4, 'dewansh.parashar@gmail.com', 'Dewansh Parashar', NULL, NULL, '12345678', NULL, NULL, 1),
+(5, 'prateeknarang111@gmail.com', 'Prateek Narang', NULL, NULL, '12345678', NULL, NULL, 1),
+(6, 'falit94@gmail.com', 'Falit Jain', NULL, NULL, '12345678', NULL, NULL, 1),
+(7, 'mebjas@gmail.com', 'Minhaz AV', NULL, 'Gsocer', '12345678', NULL, NULL, 1),
+(8, 'bhavukarora@gmail.com', 'Bhavuk Arora', NULL, NULL, '12345678', NULL, NULL, 1),
+(9, 'ayushtomar@gmail.com', 'Ayush Tomar', NULL, 'AUV guy', '12345678', NULL, NULL, 0),
+(10, 'deep.deepankar@gmail.com', 'Deepankar Anil Kumar', NULL, 'coder', '12345678', NULL, NULL, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
