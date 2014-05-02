@@ -4,7 +4,7 @@
 
 $db_host		= 'localhost';
 $db_user		= 'root';
-$db_pass		= 'dhruv';
+$db_pass		= 'shubham';
 $db_database	= 'facebook'; 
 
 /* End config */

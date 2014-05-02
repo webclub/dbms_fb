@@ -189,7 +189,7 @@ setcookie("uid","2"); // to be removed
 						echo '
 					    </ul>
 
-					<a id="addButton" class="green-button" href="#">Comment</a>
+					<a  class="green-button addButton" href="#">Comment</a>
 
 					</div>
 
