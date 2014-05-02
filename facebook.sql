@@ -235,7 +235,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(1000) NOT NULL,
   `dob` date DEFAULT NULL,
   `dp` text,
-  `verified` tinyint(1) NOT NULL,
+  `gender' char(20) NOT NULL,
+  
   PRIMARY KEY (`uid`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
