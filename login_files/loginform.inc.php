@@ -4,14 +4,14 @@ if(isset($_POST['username'])&&isset($_POST['password']))
 {
 $username=$_POST['username'];
 $password=$_POST['password'];
-$password_hash=md5($password);
+$password_hash=$password;
 
 //echo $password;
 //echo $password_hash;
 
 if(!empty($username)&&!empty($password)){
 	
-		$query= "SELECT `uid` FROM `user` WHERE `name`='".mysql_real_escape_string($username)."' AND `password`='".mysql_real_escape_string($password_hash)."'";
+		$query= "SELECT `uid` FROM `user` WHERE `email`='".mysql_real_escape_string($username)."' AND `password`='".mysql_real_escape_string($password_hash)."'";
 		if($query_run=mysql_query($query)){
 		
 			$query_num_rows = mysql_num_rows($query_run);
