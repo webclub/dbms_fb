@@ -22,11 +22,12 @@ class ToDo{
 	public function __toString(){
 		
 		// The string we return is outputted by the echo statement
-		$uid=mysql_fetch_array(mysql_query("SELECT name FROM user WHERE uid=".$this->data['uid']));
+		$uid=mysql_fetch_array(mysql_query("SELECT firstname,lastname FROM user WHERE uid=".$this->data['uid']));
+		var_dump(); 
 		return '
 			<li id="todo-'.$this->data['commid'].'" class="todo '.$this->data['postid'].'">
 			
-				<div class="text">'.$uid[0].':<b>'.$this->data['content'].'</b></div>
+				<div class="text">'.$uid[0].' ' . $uid[1].' : <b>'.$this->data['content'].'</b></div>
 				
 				<div class="actions">
 					<a href="#" class="edit">Edit</a>
@@ -69,7 +70,7 @@ class ToDo{
 	
 	public static function delete($id){
 		
-		mysql_query("DELETE FROM comments WHERE commid='$id'") or die("bhot ho gaya".$id);
+		mysql_query("DELETE FROM comments WHERE commid='$id'") ;
 		
 		if(mysql_affected_rows($GLOBALS['link'])!=1)
 			throw new Exception("Couldn't delete item!");

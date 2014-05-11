@@ -17,7 +17,7 @@ function loggedin(){
 }
 
 function getuserfield($field){
-	$query= "SELECT `$field` FROM `user` WHERE `id` = '".$_SESSION['user_id']."'";
+	$query= "SELECT `$field` FROM `user` WHERE `uid` = '".$_SESSION['user_id']."'";
 	
 	if ( $query_run = mysql_query ($query)){
 	
