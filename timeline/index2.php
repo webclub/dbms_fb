@@ -241,11 +241,10 @@ require "demo/todo.class.php";
 		 $.ajax({
 		   type: "POST",
 		   url: "ytubeIP/ajax_server.php",
-		   data: "option="+option+"&item="+item+"&userid"+userid,
-		   success: function(responce){	
-			    var json = jQuery.parseJSON(responce);
-                            //alert(json.ip_exists);
-                            if(json.ip_exists == "0"){
+		   data: "option="+option+"&item="+item+"&userid="+userid,
+		   success: function(response){	
+		   		var json = jQuery.parseJSON(response);
+                if(json.ip_exists == "0"){
 				var total = parseInt(json.likes) + parseInt(json.dislikes);
 				
 				option = (option == "1") ? "Liked" : "Disliked" ;
@@ -254,6 +253,7 @@ require "demo/todo.class.php";
 
 				$(".stats_"+pid).html('<div class="stat-details"><span class="close"></span>You '+option+' this item. Thanks for the feedback !<br><br><b>Rating for this item</b> <span id="small"> ('+total+' total)</span><table border="0" width="100%"><tr><td width="25px"><span class="thumbs-up"></span></td><td width="50px;">'+json.likes+'</td><td><div class="bar green" style="width:'+likes+'%;"></div></td></tr><tr><td><span class="thumbs-down"></span></td><td>'+json.dislikes+'</td><td><div class="bar red" style="width:'+dislikes+'%;"></div></td></tr></table>');
                             }else{
+                            	console.log('hey');
                                 $(".stats_"+pid).html('<div class="stat-details"><span class="close"></span>You have allready rated this Post!</div>');
                             }        
                     }
