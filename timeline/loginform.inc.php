@@ -37,7 +37,16 @@ if(!empty($username)&&!empty($password)){
 ?>
 
 
+<html>
+	<head>
+		<style>
+	
+body{background: radial-gradient(ellipse farthest-corner at 45px 45px , #00FFFF 0%, rgba(0, 0, 255, 0) 50%, #0000FF 95%);}
 
+
+		</style>
+	</head>	
+	<body>
 <table width="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
 <tr>
 <form name="form1" method="post" action="<?php echo $current_file; ?>">
@@ -66,3 +75,7 @@ if(!empty($username)&&!empty($password)){
 </form>
 </tr>
 </table>
+<div>
+	</div>
+</body>
+</html>
