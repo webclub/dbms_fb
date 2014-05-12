@@ -2,7 +2,6 @@
 
 require "demo/connect.php";
 require "demo/todo.class.php";
-setcookie("uid","2"); // to be removed
 
 ?>
 
@@ -149,8 +148,8 @@ setcookie("uid","2"); // to be removed
 			<div class="main">
 				<ul class="cbp_tmtimeline">
 				<?php
-					$uid=$_COOKIE["uid"];
-					$query="SELECT * FROM post WHERE uid IN (SELECT uid1 FROM edgelist WHERE uid2=$uid UNION SELECT uid2 FROM edgelist WHERE uid1=$uid) ORDER BY time DESC";
+					$uid=$_SESSION["user_id"];
+					$query="SELECT * FROM post WHERE uid IN (SELECT uid1 FROM edgelist WHERE uid2=".$uid." UNION SELECT uid2 FROM edgelist WHERE uid1=".$uid.") ORDER BY time DESC";
 					$posts=mysql_query($query);
 					while($post=mysql_fetch_array($posts))			{						
 						echo '<li>
@@ -235,14 +234,14 @@ setcookie("uid","2"); // to be removed
 	$(".option").click(function(){
 		 var option = $(this).val();
 		 var pid = $(this).attr('pid');
-		 console.log(pid);
 		 var item	= $("#item_"+pid).val();
-		 
+		 var userid = <?php echo $_SESSION['user_id'] ?>;	 
+		 console.log(userid);
 		 $(".stats_"+pid).slideDown("fast").html("Loading....");
 		 $.ajax({
 		   type: "POST",
 		   url: "ytubeIP/ajax_server.php",
-		   data: "option="+option+"&item="+item,
+		   data: "option="+option+"&item="+item+"&userid"+userid,
 		   success: function(responce){	
 			    var json = jQuery.parseJSON(responce);
                             //alert(json.ip_exists);

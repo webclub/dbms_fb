@@ -49,12 +49,12 @@ if(!empty($username)&&!empty($password)){
 <tr>
 <td width="78">Username</td>
 <td width="6">:</td>
-<td width="294"><input name="username" type="text" id="username"></td>
+<td width="294"><input name="username" type="text" id="username" required></td>
 </tr>
 <tr>
 <td>Password</td>
 <td>:</td>
-<td><input name="password" type="password" id="password"></td>
+<td><input name="password" type="password" id="password" required></td>
 </tr>
 <tr>
 <td>&nbsp;</td>

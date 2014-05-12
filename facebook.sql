@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.8.1deb1
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 12, 2014 at 05:06 AM
--- Server version: 5.5.34-0ubuntu0.13.04.1
--- PHP Version: 5.4.9-4ubuntu2.4
+-- Generation Time: May 12, 2014 at 05:36 PM
+-- Server version: 5.5.37-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `content` text NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`commid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `comments`
@@ -71,7 +71,8 @@ INSERT INTO `comments` (`commid`, `uid`, `postid`, `content`, `time`) VALUES
 (22, 2, 4, 'jo bhi main ... kehna chahu ''''', '2014-05-01 18:35:02'),
 (24, 2, 4, 'idk', '2014-05-01 20:36:23'),
 (28, 5, 3, 'he he', '2014-05-11 21:04:42'),
-(29, 2, 3, 'ha ha', '2014-05-11 21:05:21');
+(29, 2, 3, 'ha ha', '2014-05-11 21:05:21'),
+(30, 0, 3, 'hi this is amazing ', '2014-05-12 11:24:24');
 
 -- --------------------------------------------------------
 
@@ -92,6 +93,8 @@ CREATE TABLE IF NOT EXISTS `edgelist` (
 --
 
 INSERT INTO `edgelist` (`uid1`, `uid2`, `aff12`, `aff21`) VALUES
+(1, 4, NULL, NULL),
+(1, 5, NULL, NULL),
 (2, 4, NULL, NULL),
 (2, 5, NULL, NULL),
 (2, 7, NULL, NULL),
@@ -109,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `likes` (
   `item-id` int(11) NOT NULL,
   `likes` int(11) NOT NULL,
   `dislikes` int(11) NOT NULL,
-  `ip` mediumtext NOT NULL,
+  `uid` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
@@ -117,11 +120,10 @@ CREATE TABLE IF NOT EXISTS `likes` (
 -- Dumping data for table `likes`
 --
 
-INSERT INTO `likes` (`id`, `item-id`, `likes`, `dislikes`, `ip`) VALUES
-(1, 4, 1, 0, '123.123.1.323'),
-(2, 3, 1, 0, '123.123.1.323'),
-(3, 6, 1, 0, '123.123.1.323'),
-(4, 10, 1, 0, '123.123.1.323');
+INSERT INTO `likes` (`id`, `item-id`, `likes`, `dislikes`, `uid`) VALUES
+(1, 10, 1, 0, '123.123.1.323'),
+(2, 4, 0, 1, '123.123.1.323'),
+(4, 3, 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -183,43 +185,6 @@ INSERT INTO `post` (`postid`, `uid`, `content`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `status`
---
-
-CREATE TABLE IF NOT EXISTS `status` (
-  `status_id` int(11) NOT NULL AUTO_INCREMENT,
-  `status_text` varchar(140) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `created_on` int(11) NOT NULL,
-  PRIMARY KEY (`status_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tz_todo`
---
-
-CREATE TABLE IF NOT EXISTS `tz_todo` (
-  `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-  `text` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `dt_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `position` int(4) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=38 ;
-
---
--- Dumping data for table `tz_todo`
---
-
-INSERT INTO `tz_todo` (`id`, `text`, `dt_added`, `position`) VALUES
-(35, 'hII', '2014-04-29 21:14:08', 1),
-(36, '.....', '2014-04-29 21:31:57', 2),
-(37, '.....', '2014-05-01 08:14:20', 3);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
@@ -236,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(30) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `user`
