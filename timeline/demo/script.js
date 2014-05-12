@@ -127,24 +127,6 @@ $(document).ready(function(){
 	});
 	
 	
-	// The Add New ToDo button:
-	
-	var timestamp=0;
-	$('.addButton').click(function(e){
 
-		// Only one todo per 5 seconds is allowed:
-		if((new Date()).getTime() - timestamp<5000) return false;
-		
-		$.get("demo/ajax.php",{'action':'new','text':'.....','uid':$.cookie("uid"),'postid':$(this).attr("id")},function(msg){
 
-			// Appending the new todo and fading it into view:
-			$(msg).hide().appendTo('.todoList').fadeIn();
-		});
-
-		// Updating the timestamp:
-		timestamp = (new Date()).getTime();
-		
-		e.preventDefault();
-	});
-	
 }); // Closing $(document).ready()
