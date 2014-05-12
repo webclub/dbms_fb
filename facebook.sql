@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 12, 2014 at 05:36 PM
+-- Generation Time: May 12, 2014 at 06:24 PM
 -- Server version: 5.5.37-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4
 
@@ -95,6 +95,8 @@ CREATE TABLE IF NOT EXISTS `edgelist` (
 INSERT INTO `edgelist` (`uid1`, `uid2`, `aff12`, `aff21`) VALUES
 (1, 4, NULL, NULL),
 (1, 5, NULL, NULL),
+(1, 7, NULL, NULL),
+(1, 9, NULL, NULL),
 (2, 4, NULL, NULL),
 (2, 5, NULL, NULL),
 (2, 7, NULL, NULL),
@@ -114,16 +116,14 @@ CREATE TABLE IF NOT EXISTS `likes` (
   `dislikes` int(11) NOT NULL,
   `uid` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `likes`
 --
 
 INSERT INTO `likes` (`id`, `item-id`, `likes`, `dislikes`, `uid`) VALUES
-(1, 10, 1, 0, '123.123.1.323'),
-(2, 4, 0, 1, '123.123.1.323'),
-(4, 3, 1, 0, '');
+(9, 4, 1, 0, '2');
 
 -- --------------------------------------------------------
 
