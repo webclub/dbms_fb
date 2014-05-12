@@ -2,7 +2,7 @@
 
 require "demo/connect.php";
 require "demo/todo.class.php";
-
+$_SESSION['username'] = getuserfield('username') ; 
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +20,9 @@ require "demo/todo.class.php";
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<script src="js/modernizr.custom.js"></script>
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/humanity/jquery-ui.css" type="text/css" media="all" />
-
+<link type="text/css" rel="stylesheet" media="all" href="../chat/css/chat.css" />
+<!-- Our own stylesheet -->
+<link rel="stylesheet" type="text/css" href="demo/styles.css" />
 <!-- Our own stylesheet -->
 <link rel="stylesheet" type="text/css" href="demo/styles.css" />
 <style>
@@ -144,6 +146,13 @@ require "demo/todo.class.php";
 					<a href="logout.php" class="icon-arrow-left" data-info="Logout">Logout</a>
 					<a href="" class="icon-drop" data-info="View Profile">View profile</a>
 				</nav>
+				<div id="main_container">
+
+<a href="javascript:void(0)" onclick="javascript:chatWith('drv47')">Chat With drv47 </a>
+<a href="javascript:void(0)" onclick="javascript:chatWith('Bittu1234')">Chat With Bittu1234</a>
+<!-- YOUR BODY HERE -->
+
+</div>
 			</header>	
 			<div class="main">
 				<ul class="cbp_tmtimeline">
@@ -261,6 +270,8 @@ require "demo/todo.class.php";
 	});
 //-->
 </script>
+<script type="text/javascript" src="../chat_/js/jquery.js"></script>
+<script type="text/javascript" src="../chat/js/chat.js"></script>
 
 	</body>
 </html>
