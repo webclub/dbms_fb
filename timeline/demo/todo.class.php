@@ -24,9 +24,9 @@ class ToDo{
 		// The string we return is outputted by the echo statement
 		$uid=mysql_fetch_array(mysql_query("SELECT firstname,lastname FROM user WHERE uid=".$this->data['uid']));
 		$uname=$uid[0].' ' . $uid[1];
-		if($_SESSION['user_id']==$this->data['uid'])
+		if($_SESSION['user_id']==$this->data['uid']){
 			$uname='Me';
-		return '
+			return '
 			<li id="todo-'.$this->data['commid'].'" class="todo '.$this->data['postid'].'">
 			
 				<div class="text">'.$uname.' : <b>'.$this->data['content'].'</b></div>
@@ -37,6 +37,14 @@ class ToDo{
 				</div>
 				
 			</li>';
+		}
+		else{
+			return '
+			<li id="todo-'.$this->data['commid'].'" class="todo '.$this->data['postid'].'">
+				<div class="text">'.$uname.' : <b>'.$this->data['content'].'</b></div>
+			</li>';
+		}
+		
 	}
 	
 	
