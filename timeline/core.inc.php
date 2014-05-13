@@ -28,4 +28,8 @@ function getuserfield($field){
 	}
 }
 
+function getuserid(){
+	return $_SESSION['user_id'];
+}
+
 ?>

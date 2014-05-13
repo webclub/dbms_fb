@@ -152,8 +152,8 @@ $(document).ready(function ()
       $(".mess").show().html('<h5>Thanks !</h5><h5>Your message has been sent.</h5>'); // Change Your message post send
       $('.mess').delay(3000).fadeOut(function() {
 
-        $('#form').clearForm();
-        $('#form').delay(3500).show();
+      $('#form').clearForm();
+      $('#form').delay(3500).show();
 
       });
     }

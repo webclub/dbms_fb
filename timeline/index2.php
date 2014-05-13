@@ -142,7 +142,7 @@ require "demo/todo.class.php";
 				<nav>
 					<span href='#'>You are now logged in.</span>
 					<a href="logout.php" class="icon-arrow-left" data-info="Logout">Logout</a>
-					<a href="" class="icon-drop" data-info="View Profile">View profile</a>
+					<a href="profile.php" class="icon-drop" data-info="View Profile">View profile</a>
 				</nav>
 			</header>	
 			<div class="main">
@@ -151,12 +151,23 @@ require "demo/todo.class.php";
 					$uid=$_SESSION["user_id"];
 					$query="SELECT * FROM post WHERE uid IN (SELECT uid1 FROM edgelist WHERE uid2=".$uid." UNION SELECT uid2 FROM edgelist WHERE uid1=".$uid.") ORDER BY time DESC";
 					$posts=mysql_query($query);
+
 					while($post=mysql_fetch_array($posts))			{						
+						$user=mysql_fetch_assoc(mysql_query("SELECT firstname,lastname FROM user WHERE uid=".$post['uid']));
 						echo '<li>
 											<time class="cbp_tmtime" datetime="'.explode(',',$post['time'],0).'"><span>'.explode(' ',$post['time'])[0].'</span> <span>'.explode(' ',$post['time'])[1].'</span></time>
 											<div class="cbp_tmicon cbp_tmicon-phone"></div>
 											<div class="cbp_tmlabel" id="'.$post['postid'].'">
-												'.$post['content'].'
+												';
+							if($uid==$post['uid'])
+							{
+								echo 'Me';
+							}
+							else
+							{
+								echo $user['firstname'].' '.$user['lastname'];
+							}
+						echo ' : '.$post['content'].'
 											</div>
 											<div class="contain">
 							<button id="button-container-like" class="option" value="1" pid='.$post['postid'].'><span class="thumbs-up"></span>Like</button>

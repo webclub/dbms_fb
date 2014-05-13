@@ -1,3 +1,11 @@
+<?php 
+	require 'demo/connect.php';
+	require 'core.inc.php';
+	if (!loggedin()) {
+		header('Location: index.php');
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,28 +25,28 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <!--style sheet-->
-<link rel="stylesheet" media="screen" href="css/bootstrap.css"/>
-<link rel="stylesheet" media="screen" href="css/styles.css"/>
-<link rel="stylesheet" href="css/bebasneue.css" />
+<link rel="stylesheet" media="screen" href="css1/bootstrap.css"/>
+<link rel="stylesheet" media="screen" href="css1/styles.css"/>
+<link rel="stylesheet" href="css1/bebasneue.css" />
 <!--google web font-->
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
-<link rel="stylesheet" href="css/prettyPhoto.css"/>
+<link href="font-awesome/css1/font-awesome.css" rel="stylesheet"/>
+<link rel="stylesheet" href="css1/prettyPhoto.css"/>
 
 <!--JavaScript-->
-<script src="js/jquery-1.8.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/jquery.nav.js"></script>
-<script src="js/jquery.scrollTo.js"></script>
-<script src="js/scripts.js"></script>
-<script src="js/modernizr.js"></script>
-<script src="js/jquery.prettyPhoto.js"></script>
-<script src="js/jquery.nicescroll.min.js"></script>
-<script src="js/jquery.isotope.min.js"></script>
-<script src="js/jquery.preloader.js"></script>
-<script src="js/jquery.form.js"></script>
-<script src="js/jquery.ufvalidator-1.0.5.js"></script>
-<script src="js/jquery.gmap.js"></script>
+<script src="js1/jquery-1.8.1.min.js"></script>
+<script src="js1/bootstrap.js"></script>
+<script src="js1/jquery.nav.js"></script>
+<script src="js1/jquery.scrollTo.js"></script>
+<script src="js1/scripts.js"></script>
+<script src="js1/modernizr.js"></script>
+<script src="js1/jquery.prettyPhoto.js"></script>
+<script src="js1/jquery.nicescroll.min.js"></script>
+<script src="js1/jquery.isotope.min.js"></script>
+<script src="js1/jquery.preloader.js"></script>
+<script src="js1/jquery.form.js"></script>
+<script src="js1/jquery.ufvalidator-1.0.5.js"></script>
+<script src="js1/jquery.gmap.js"></script>
 <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 
@@ -56,7 +64,7 @@
 			<nav id="nav">
 				<!-- logo -->
 				<div class="logo">
-					<h2>Shubham Desale<span>Aam Programmer</span></h2>
+					<h2><?php echo getuserfield('firstname').' '.getuserfield('lastname') ;?><span><?php echo getuserfield('about');?></span></h2>
 				</div>
 				<!-- /logo end -->
 				<!-- mainnav -->
@@ -84,7 +92,7 @@
 				<div class="row">
 					<div class="span8">
 						
-						<h2>Shubham Desale</h2>
+						<h2><?php echo getuserfield('firstname').' '.getuserfield('lastname') ;?></h2>
 						<hr>
 						<h3> *coughs* I am an Aam Programmer with minimum possible skills Ji, *coughs*  , Meri aukat hi kya hai !
 						</h3>
@@ -184,7 +192,7 @@
 				<div class="row contact">
 					
 					<div class="span4">
-						<form class="form" id="form" method="post" action="contact.php">
+						<form class="form" id="form" method="post" action="status.php">
 							
 							<textarea name="message" placeholder="Whats on your mind ?" rows="8" style="width:763px"class="span4"></textarea>
 							<button type="submit"  class="btn btn-success"  id="submit">POST</button>
@@ -205,5 +213,6 @@
 </div>
 <!-- Main Container end -->
 <a class="scroll-top" href="#" title="Scroll to top">Top</a>
+
 </body>
 </html>

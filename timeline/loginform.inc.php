@@ -10,7 +10,8 @@ $password=$_POST['password'];
 
 if(!empty($username)&&!empty($password)){
 	
-		$query= "SELECT `uid` FROM `user` WHERE `username`='".mysql_real_escape_string($username)."' AND `password`='".mysql_real_escape_string($password)."'";
+		$query= "SELECT `uid` FROM `user` WHERE `username`='".mysql_real_escape_string($username).
+				"' AND `password`='".mysql_real_escape_string($password)."'";
 		if($query_run=mysql_query($query)){
 		
 			$query_num_rows = mysql_num_rows($query_run);
