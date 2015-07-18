@@ -223,7 +223,7 @@ INSERT INTO `post` (`postid`, `uid`, `content`, `time`) VALUES
 
 CREATE TABLE IF NOT EXISTS `user` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `firstname` varchar(40) NOT NULL,
   `lastname` varchar(40) DEFAULT NULL,
   `about` text,
